@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan Claud | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="text-gray-200">
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="particles" id="particles"></div>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="bg-gray-800 bg-opacity-80 p-4 text-white flex justify-between items-center fixed top-0 w-full">
+        <h1 class="text-xl font-bold">RClaud</h1>
+        <div>
+            <a href="#about" class="px-4 hover:text-blue-400 transition">About</a>
+            <a href="#projects" class="px-4 hover:text-blue-400 transition">Projects</a>
+            <a href="#hobbies" class="px-4 hover:text-blue-400 transition">Hobbies</a>
+            <a href="#skills" class="px-4 hover:text-blue-400 transition">Skills</a>
+            <a href="#certificates" class="px-4 hover:text-blue-400 transition">Certificates</a>
+            <a href="#contact" class="px-4 hover:text-blue-400 transition">Contact</a>
+        </div>
+    </nav>
+    
+         <!-- Header --> 
+    <header class="relative text-center py-32 bg-cover bg-center text-white" style="margin-top: 4rem;">
+        <div class="relative z-10">
+            <h2 class="text-5xl font-bold">
+                <span>Hello, I am<br></span><span id="dynamic-text" class="text-yellow-400"></span><br>
+
+            </h2>
+            <p class="text-lg mt-2 animate-fadeIn delay-300">1 Year of Experience in IT Development & Support</p>
+        </div>
+    </header>
+    
+    <script>
+        const words = ["DEVELOPER", "DESIGNER"];
+        let wordIndex = 0;
+        let letterIndex = 0;
+        let isDeleting = false;
+        const speed = 150;
+        const dynamicText = document.getElementById("dynamic-text");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (!isDeleting) {
+                dynamicText.textContent = currentWord.slice(0, ++letterIndex);
+                if (letterIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1000); 
+                } else {
+                    setTimeout(typeEffect, speed);
+                }
+            } else {
+                dynamicText.textContent = currentWord.slice(0, --letterIndex);
+                if (letterIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(typeEffect, speed / 2);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            typeEffect();
+        });
+    </script>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-6xl mx-auto py-16 px-6 flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 flex justify-center mt-10 md:mt-0 relative group">
+            <!-- Border Wrapper with Animation -->
+            <div class="relative w-80 h-80 rounded-full flex items-center justify-center shadow-lg overflow-hidden border-4 border-transparent group-hover:border-blue-400 transition">
+                <!-- Animated Border -->
+                <div class="absolute inset-0 w-full h-full rounded-full border-4 animate-border-spin opacity-100 z-0"></div>
+                <!-- Profile Image -->
+                <img src="images/ryan.png" alt="Ryan Claud" class="w-72 h-72 object-cover rounded-full border-4 border-blue-400 transition-transform duration-300 group-hover:scale-105">
+            </div>
+        </div>
+
+        <div class="md:w-1/2 text-center md:text-left mt-10 md:mt-0">
+            <h2 class="text-5xl font-extrabold text-white leading-tight">Hi, I'm Ryan Claud</h2>
+            <h3 class="text-2xl text-blue-400 font-semibold mt-2">Web Developer & IoT Enthusiast</h3>
+            <p class="mt-4 text-gray-300 leading-relaxed">
+                Passionate about technology and innovation, I specialize in web development, networking, 
+                and IoT solutions. With a keen eye for problem-solving, I design and build scalable, efficient, 
+                and secure systems that bridge the gap between the digital and physical worlds.
+            </p>
+            <div class="mt-6 flex justify-center md:justify-start gap-4">
+                <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition">
+                    Hire Me
+                </a>
+                <a href="#portfolio" class="border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-semibold py-3 px-8 rounded-lg shadow-md transition">
+                    Let's Talk
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+<!-- Custom CSS for Animated RGB Border -->
+<style>
+    @keyframes neon-border {
+        0% { border-color: #ff0000; }  /* Red */
+        25% { border-color: #00ff00; } /* Green */
+        50% { border-color: #0000ff; } /* Blue */
+        75% { border-color: #ff00ff; } /* Magenta */
+        100% { border-color: #ff0000; } /* Back to Red */
+    }
+
+    @keyframes rotate-border {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-360deg); }
+    }
+
+    .animate-border-spin {
+        animation: neon-border 3s linear infinite, rotate-border 3s linear infinite;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 50%;
+    }
+    </style>
+
+<canvas id="networkCanvas"></canvas>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-4xl mx-auto py-10" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-center">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-gray-800 bg-opacity-60 p-4 rounded shadow hover:scale-105 transition-transform" data-aos="zoom-in">
+                <div class="image-container mb-2">
+                    <img src="images/project1.png" alt="Project 1" class="rounded w-full">
+                </div>
+                <h3 class="font-bold">Project 1</h3>
+                <p>A web-based system for School Management.</p>
+            </div>
+            <div class="bg-gray-800 bg-opacity-60 p-4 rounded shadow hover:scale-105 transition-transform" data-aos="zoom-in" data-aos-delay="200">
+                <div class="image-container mb-2">
+                    <img src="images/project2.jpg" alt="Project 2" class="rounded w-full">
+                </div>
+                <h3 class="font-bold">Project 2</h3>
+                <p>An IoT-based home automation system.</p>
+            </div>
+            <div class="bg-gray-800 bg-opacity-60 p-4 rounded shadow hover:scale-105 transition-transform" data-aos="zoom-in" data-aos-delay="200">
+                <div class="image-container mb-2">
+                    <img src="images/project3.jpg" alt="Project 3" class="rounded w-full">
+                </div>
+                <h3 class="font-bold">Project 3</h3>
+                <p>Next-Gen Motorcycle Security: GPS-GSM Tracking with Remote Engine Immobilization through SMS."</p>
+            </div>
+            <div class="bg-gray-800 bg-opacity-60 p-4 rounded shadow hover:scale-105 transition-transform" data-aos="zoom-in" data-aos-delay="200">
+                <div class="image-container mb-2">
+                    <img src="images/project4.jpg" alt="Project 4" class="rounded w-full">
+                </div>
+                <h3 class="font-bold">Project 4</h3>
+                <p>RFID-Based Keyless Motorcycle System.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="max-w-4xl mx-auto py-10" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-center">Hobbies</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="bg-gray-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 text-center" data-aos="flip-left">
+                <div class="image-container">
+                    <img src="images/coding.jpg" alt="Coding" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <h3 class="text-xl font-semibold mt-3">Coding</h3>
+            </div>
+            <div class="bg-gray-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 text-center" data-aos="flip-left" data-aos-delay="200">
+                <div class="image-container">
+                    <img src="images/motorcycling.jpg" alt="Motorcycling" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <h3 class="text-xl font-semibold mt-3">Motorcycling</h3>
+            </div>
+            <div class="bg-gray-800 bg-opacity-60 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 text-center" data-aos="flip-left" data-aos-delay="400">
+                <div class="image-container">
+                    <img src="images/music.jpg" alt="Music" class="w-full h-40 object-cover rounded-lg">
+                </div>
+                <h3 class="text-xl font-semibold mt-3">Music</h3>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="max-w-4xl mx-auto py-10" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-center">Skills</h2>
+        <div class="mt-6 space-y-4">
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Web Development</span>
+                <span class="text-sm font-bold bg-purple-500 text-white px-2 py-1 rounded">90%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 90%;"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">IoT & Embedded Systems</span>
+                <span class="text-sm font-bold bg-green-500 text-white px-2 py-1 rounded">85%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 85%;"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Database Management</span>
+                <span class="text-sm font-bold bg-yellow-500 text-white px-2 py-1 rounded">80%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 80%;"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Networking & Security</span>
+                <span class="text-sm font-bold bg-red-500 text-white px-2 py-1 rounded">75%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-red-500 h-2.5 rounded-full" style="width: 75%;"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Programming Languages</span>
+                <span class="text-sm font-bold bg-purple-400 text-white px-2 py-1 rounded">85%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-purple-400 h-2.5 rounded-full" style="width: 85%;"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Cloud & DevOps</span>
+                <span class="text-sm font-bold bg-teal-500 text-white px-2 py-1 rounded">70%</span>
+            </div>
+            <div class="w-full bg-gray-300 rounded-full h-2.5">
+                <div class="bg-teal-500 h-2.5 rounded-full" style="width: 70%;"></div>
+            </div>
+        </div>
+    </section>
+
+        
+        <!-- Add FontAwesome for Icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="max-w-5xl mx-auto py-10" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-center">Certificates</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="image-container">
+                <img src="images/certificate1.jpg" alt="Certificate 1" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="image-container">
+                <img src="images/certificate2.jpg" alt="Certificate 2" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="image-container">
+                <img src="images/certificate3.jpg" alt="Certificate 3" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="image-container">
+                <img src="images/certificate4.jpg" alt="Certificate 4" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="image-container">
+                <img src="images/certificate5.jpg" alt="Certificate 5" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="image-container">
+                <img src="images/certificate6.jpg" alt="Certificate 6" class="rounded-lg shadow-lg w-full">
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-4xl mx-auto py-10 text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-bold">Contact Me</h2>
+        <form action="/contact" method="POST" class="bg-gray-800 bg-opacity-70 p-6 rounded shadow mt-4">
+            <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border mb-2 bg-gray-700 text-white" required>
+            <input type="email" name="email" placeholder="Your Email" class="w-full p-2 border mb-2 bg-gray-700 text-white" required>
+            <textarea name="message" placeholder="Your Message" class="w-full p-2 border mb-2 bg-gray-700 text-white" required></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-400 transition">Send</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+<footer class="bg-gray-800 bg-opacity-80 py-4 text-center text-gray-400">
+    <p>&copy; 2025 RClaud. All rights reserved.</p>
+    <div class="mt-2 flex justify-center gap-4">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/ryanl.claud" target="_blank" class="text-gray-400 hover:text-blue-400 transition">
+            <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/ryanclaud" target="_blank" class="text-gray-400 hover:text-blue-400 transition">
+            <i class="fab fa-github text-xl"></i>
+        </a>
+        <!-- Gmail -->
+        <a href="https://accounts.google.com/SignOutOptions?hl=en-GB&continue=https://mail.google.com/mail/&service=mail&ec=GBRAFw" class="text-gray-400 hover:text-blue-400 transition">
+            <i class="fas fa-envelope text-xl"></i>
+        </a>
+    </div>
+</footer>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById("networkCanvas");
+            const ctx = canvas.getContext("2d");
+        
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        
+            let particles = [];
+            const numParticles = 80; // Adjust for density
+            const maxDistance = 120; // Distance between connected particles
+        
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 1;
+                    this.vy = (Math.random() - 0.5) * 1;
+                    this.radius = 2;
+                }
+        
+                move() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+        
+                    if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1;
+                    if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1;
+                }
+        
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = "#00ffff";
+                    ctx.fill();
+                }
+            }
+        
+            function createParticles() {
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+        
+            function drawConnections() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+                        if (distance < maxDistance) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = "rgba(0, 255, 255, 0.2)";
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+        
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+                for (let particle of particles) {
+                    particle.move();
+                    particle.draw();
+                }
+        
+                drawConnections();
+                requestAnimationFrame(animate);
+            }
+        
+            window.addEventListener("resize", () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        
+            createParticles();
+            animate();
+        });
+        </script>
+        
+</body>
+</html>

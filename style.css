@@ -1,0 +1,182 @@
+ /* Custom styles */
+ body {
+    padding-top: 4rem; /* Adjust based on navbar height */
+    scroll-behavior: smooth;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Dynamic background */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: linear-gradient(125deg, #050a18, #0f172a, #131c2e, #1a2942);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+}
+
+/* Canvas for network effect */
+#networkCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    pointer-events: none;
+}
+
+/* Gradient animation */
+@keyframes gradientBackground {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+
+    
+    @keyframes gradientBackground {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Content sections - make them slightly transparent to see the background */
+    section {
+        background-color: rgba(17, 24, 39, 0.7);
+        backdrop-filter: blur(5px);
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    nav {
+        z-index: 50; /* Ensures navbar stays above other content */
+        transition: background 0.3s ease-in-out;
+        backdrop-filter: blur(10px);
+    }
+    
+    .nav-scrolled {
+        background: rgba(31, 41, 55, 0.9); /* Darker navbar when scrolling */
+    }
+
+    /* RGB Hover Effect */
+    @keyframes rgbHover {
+        0% { background: red; }
+        25% { background: green; }
+        50% { background: blue; }
+        75% { background: purple; }
+        100% { background: red; }
+    }
+    
+    /* Counter-clockwise RGB border effect */
+    @keyframes rgbBorderCounter {
+        0% { box-shadow: 0 0 10px 3px red; }
+        25% { box-shadow: 0 0 10px 3px purple; }
+        50% { box-shadow: 0 0 10px 3px blue; }
+        75% { box-shadow: 0 0 10px 3px green; }
+        100% { box-shadow: 0 0 10px 3px red; }
+    }
+    
+    /* Continuous cyan-focused RGB effect for profile image */
+    @keyframes cyanNeonPulse {
+        0% { box-shadow: 0 0 25px 5px #00ffff; }
+        25% { box-shadow: 0 0 25px 7px #00ccff; }
+        50% { box-shadow: 0 0 35px 10px #00ffee; }
+        75% { box-shadow: 0 0 25px 7px #00ccff; }
+        100% { box-shadow: 0 0 15px 5px #00ffff; }
+    }
+
+    /* Profile Image Container */
+    .profile-image-container {
+        position: relative;
+        width: 15rem; 
+        height: 15rem;
+        margin: 0 auto;
+        animation: cyanNeonPulse 3s linear infinite;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    /* Profile Image */
+    .profile-image {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Glow effect on hover */
+    .profile-image-container:hover .profile-image {
+        transform: scale(1.1);
+    }
+
+    /* RGB Hover Effect */
+    .profile-image-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        box-shadow: 0 0 20px 5px #12a7a7;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .profile-image-container:hover::after {
+        opacity: 1;
+        animation: rgbBorderCounter 2s linear infinite reverse;
+    }
+
+    .image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+    
+    .image-container img {
+        transition: transform 0.3s ease;
+        z-index: 10;
+        position: relative;
+    }
+    
+    .image-container:hover img {
+        transform: scale(1.05);
+    }
+    
+    .image-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .image-container:hover::before {
+        opacity: 0.3;
+        animation: rgbBorderCounter 3s linear infinite reverse;
+    }
+    
+    .image-container:hover {
+        animation: rgbBorderCounter 3s linear infinite reverse;
+    }
+
+    /* Fade-in effect on scroll */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
